@@ -1,0 +1,67 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window = OrionLib:MakeWindow({Name = "👹 Femboy.thighs | Hide and Seek Extreme 👹", HidePremium = false, SaveConfig = true, IntroText = "Femboy.thighs", ConfigFolder = "OrionTest"})
+
+local MainTab = Window:MakeTab({
+	Name = "Main",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Players = {}
+for i, v in pairs(game:GetService("Players"):GetChildren()) do
+    table.insert(Players, v.Name)
+end
+
+MainTab:AddDropdown({
+    Name = "Select",
+    Default = "Select",
+    Options = Players,
+    Callback = function(Value)
+        Select = Value
+    end
+})
+
+MainTab:AddButton({
+	Name = "TP To Player",
+	Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[Select].Character.HumanoidRootPart.CFrame
+  	end    
+})
+
+MainTab:AddButton({
+	Name = "Refresh List",
+	Callback = function()
+        Dropdown:Refresh(List,true)
+  	end    
+})
+
+
+
+MainTab:AddButton({
+	Name = "Collect All Coins",
+	Callback = function()
+        local plyhead = game.Players.LocalPlayer.Character.Head -- Players Head
+        for i, v in pairs(game:GetService("Workspace").GameObjects:GetDescendants()) do 
+            if v.Name == "TouchInterest" and v.Parent then 
+                firetouchinterest(plyhead, v.Parent, 0)
+                firetouchinterest(plyhead, v.Parent, 1)
+            end
+        end
+  	end    
+})
+
+
+
+
+OrionLib:MakeNotification({
+    Name = "Femboy.thighs",
+    Content = "Welcome",
+    Image = "rbxassetid://4483345998",
+    Time = 5
+})
+
+
+
+--Important
+OrionLib:Init()
+
